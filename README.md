@@ -34,3 +34,18 @@ Si prefieres ejecutar la API sin contenerizarla, sigue estos pasos:
 
 Este enfoque asegura que los usuarios tengan opciones tanto para usar Docker como para ejecutar la API de manera local.
 
+## Tecnologías y Enfoque
+
+Para la realización de esta prueba, utilicé las siguientes tecnologías y enfoques:
+
+- **Go** con el framework **Gin** para el desarrollo de la API.
+- **Testify** para las pruebas unitarias, incluyendo la creación de mocks.
+- **Docker** para la contenerización, aplicando un enfoque de **multi-stage** para reducir el tamaño de la imagen final.
+- **Logrus** para la gestión de logs en todas las capas de la aplicación.
+- **Clean Architecture** para garantizar un código desacoplado y fácil de mantener.
+- Implementación de dos métodos de transporte: **HTTP** y **gRPC**.
+- **MongoDB** como base de datos NoSQL.
+- **Swagger** para la documentación de la API.
+
+Además, he pre-poblado la base de datos con datos estáticos para que, al momento de crearla, se genere automáticamente con información de ejemplo. También he implementado varios endpoints adicionales, además de los requeridos, y he seguido los principios **SOLID** para asegurar un código limpio y escalable.
+
