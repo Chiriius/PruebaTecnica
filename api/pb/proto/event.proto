@@ -1,0 +1,73 @@
+syntax = "proto3";
+
+package event;
+
+option go_package = "./event";
+
+import "google/protobuf/timestamp.proto";
+
+service EventService {
+  
+  rpc CreateEvent(Event) returns (EventResponse) {}
+  
+  // Read operations
+  rpc GetEventByID(EventID) returns (Event) {}
+  rpc GetAllEvents(Empty) returns (EventList) {}
+  rpc GetEventsByStatus(StatusRequest) returns (EventList) {}
+  rpc GetEventsByCategory(CategoryRequest) returns (EventList) {}
+  rpc GetEventsNeedingAction(Empty) returns (EventList) {}
+  
+  
+  rpc UpdateEvent(Event) returns (Event) {}
+  
+ 
+  rpc DeleteEvent(EventID) returns (DeleteResponse) {}
+  
+
+  rpc ClassifyEvent(EventID) returns (Event) {}
+  rpc ManualClassifyEvent(ManualClassifyRequest) returns (Event) {}
+}
+
+message Empty {}
+
+message EventResponse {
+  string id = 1;
+  string message = 2;
+}
+
+message DeleteResponse {
+  bool success = 1;
+  string message = 2;
+}
+
+message EventID {
+  string id = 1;
+}
+
+message StatusRequest {
+  string status = 1;
+}
+
+message CategoryRequest {
+  string category = 1;
+}
+
+message ManualClassifyRequest {
+  string id = 1;
+  string category = 2;
+}
+
+message Event {
+  string id = 1;
+  string title = 2;
+  string description = 3;
+  string type = 4;
+  string status = 5;
+  string category = 6;
+  google.protobuf.Timestamp date = 7;
+  bool needs_action = 8;
+}
+
+message EventList {
+  repeated Event events = 1;
+}
