@@ -1,0 +1,246 @@
+type: collection.insomnia.rest/5.0
+name: Prueba Tecnica
+meta:
+  id: wrk_a99bda9c213f428abf006844425ac42f
+  created: 1743498512170
+  modified: 1743498747613
+collection:
+  - url: "{{base_url}}/events"
+    name: Crear evento
+    meta:
+      id: req_9bf65cfcb94941829cc1d74f0a880f70
+      created: 1743498942648
+      modified: 1743529187411
+      isPrivate: false
+      sortKey: -1743512564345
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+          "name": "Conferencia de Tecnología",
+          "type": "Conferencia",
+          "description": "Evento anual de tecnología",
+          "date": "2023-12-15T10:00:00Z",
+          "status": "Revisado"
+        }
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: User-Agent
+        value: insomnia/11.0.1
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: "{{base_url}}/events/67ec1eaaeeaf65b59d5c3e5c"
+    name: Buscar evento por id
+    meta:
+      id: req_7163269eaff54dc695b72427bbae0915
+      created: 1743504942350
+      modified: 1743527831014
+      isPrivate: false
+      sortKey: -1743512564270
+    method: GET
+    headers:
+      - name: User-Agent
+        value: insomnia/11.0.1
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: "{{base_url}}/events/67ec1eaaeeaf65b59d5c3e5c"
+    name: Actualizar un evento
+    meta:
+      id: req_7d2e9ad31b1d495ca329b56bda63c1b6
+      created: 1743505968771
+      modified: 1743527601479
+      isPrivate: false
+      sortKey: -1743512564295
+    method: PUT
+    body:
+      mimeType: application/json
+      text: |-
+        {
+          "name": "Por",
+          "type": "Conferencia",
+          "description": "anual de tecnología",
+          "date": "2023-12-15T10:00:00Z",
+          "status": "Pendiente por revisar"
+        }
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: User-Agent
+        value: insomnia/11.0.1
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: "{{base_url}}/events"
+    name: Obtener eventos
+    meta:
+      id: req_5e4a46237c6047fa8294e2c817d8c33f
+      created: 1743509711047
+      modified: 1743512766944
+      isPrivate: false
+      sortKey: -1743512564251.25
+    method: GET
+    headers:
+      - name: User-Agent
+        value: insomnia/11.0.1
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: "{{base_url}}/events/67ebdd221aa7bb20f48b11b0"
+    name: Eliminar evento
+    meta:
+      id: req_25a7a4d6217f4108ae8157642a0a880b
+      created: 1743510056007
+      modified: 1743512764912
+      isPrivate: false
+      sortKey: -1743512564257.5
+    method: DELETE
+    headers:
+      - name: User-Agent
+        value: insomnia/11.0.1
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: "{{base_url}}/events/status/Pendiente por revisar"
+    name: Buscar eventos por estado
+    meta:
+      id: req_26e1482e962345858eae66fb670415c7
+      created: 1743510901664
+      modified: 1743512776814
+      isPrivate: false
+      sortKey: -1743512564246.5625
+    method: GET
+    headers:
+      - name: User-Agent
+        value: insomnia/11.0.1
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: "{{base_url}}/events/category/Requiere gestión"
+    name: Buscar eventos por categoria
+    meta:
+      id: req_4aa2410cf73d4165b2aa8d302bb28e57
+      created: 1743511347756
+      modified: 1743512774950
+      isPrivate: false
+      sortKey: -1743512564248.125
+    method: GET
+    headers:
+      - name: User-Agent
+        value: insomnia/11.0.1
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: "{{base_url}}/events/67ebe0146f1abb4848164d58/classify"
+    name: Clasificar evento automaticamente
+    meta:
+      id: req_bea6ca38e78648339a1da9af68be4d6d
+      created: 1743511470165
+      modified: 1743511575992
+      isPrivate: false
+      sortKey: -1743511470165
+    method: PUT
+    headers:
+      - name: User-Agent
+        value: insomnia/11.0.1
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: "{{base_url}}/events/67ebe0146f1abb4848164d58/manual-classify"
+    name: Clasificar evento manualmente
+    meta:
+      id: req_5d132ad4edfd4ed99bc6e08ceeb5b4a6
+      created: 1743511634351
+      modified: 1743511661682
+      isPrivate: false
+      sortKey: -1743511634351
+    method: PUT
+    headers:
+      - name: User-Agent
+        value: insomnia/11.0.1
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: "{{base_url}}/events/needs"
+    name: Obtener eventos que requiere gestion
+    meta:
+      id: req_3bee978d531345bcb7939f0e6772b726
+      created: 1743512564245
+      modified: 1743512594042
+      isPrivate: false
+      sortKey: -1743512564245
+    method: GET
+    headers:
+      - name: User-Agent
+        value: insomnia/11.0.1
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+cookieJar:
+  name: Default Jar
+  meta:
+    id: jar_de253500309fb59e5ff5f15e0f66bb3de32b8437
+    created: 1743498512173
+    modified: 1743498512173
+environments:
+  name: Base Environment
+  meta:
+    id: env_de253500309fb59e5ff5f15e0f66bb3de32b8437
+    created: 1743498512172
+    modified: 1743529195218
+    isPrivate: false
+  data:
+    base_url: http://localhost:8080/api/v1
