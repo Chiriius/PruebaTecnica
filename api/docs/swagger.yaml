@@ -1,0 +1,220 @@
+swagger: "2.0"
+info:
+  title: "Events API"
+  description: "API for managing events"
+  version: "1.0.0"
+host: "localhost:8080"
+basePath: "/"
+schemes:
+  - "http"
+paths:
+  /events:
+    get:
+      summary: "Obtener eventos"
+      description: "Obtiene la lista de todos los eventos"
+      produces:
+        - "application/json"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Event"
+    post:
+      summary: "Crear evento"
+      description: "Crea un nuevo evento"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - in: "body"
+          name: "event"
+          description: "Datos del evento a crear"
+          required: true
+          schema:
+            $ref: "#/definitions/Event"
+      responses:
+        201:
+          description: "Created"
+          schema:
+            $ref: "#/definitions/Event"
+        400:
+          description: "Bad Request"
+  /events/{id}:
+    get:
+      summary: "Buscar evento por id"
+      description: "Obtiene un evento específico por su ID"
+      produces:
+        - "application/json"
+      parameters:
+        - in: "path"
+          name: "id"
+          description: "ID del evento"
+          required: true
+          type: "string"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            $ref: "#/definitions/Event"
+        404:
+          description: "Not Found"
+    put:
+      summary: "Actualizar un evento"
+      description: "Actualiza los datos de un evento existente"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - in: "path"
+          name: "id"
+          description: "ID del evento"
+          required: true
+          type: "string"
+        - in: "body"
+          name: "event"
+          description: "Datos actualizados del evento"
+          required: true
+          schema:
+            $ref: "#/definitions/Event"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            $ref: "#/definitions/Event"
+        404:
+          description: "Not Found"
+        400:
+          description: "Bad Request"
+    delete:
+      summary: "Eliminar evento"
+      description: "Elimina un evento por su ID"
+      parameters:
+        - in: "path"
+          name: "id"
+          description: "ID del evento"
+          required: true
+          type: "string"
+      responses:
+        204:
+          description: "No Content"
+        404:
+          description: "Not Found"
+  /events/status/{status}:
+    get:
+      summary: "Buscar eventos por estado"
+      description: "Obtiene eventos filtrados por su estado"
+      produces:
+        - "application/json"
+      parameters:
+        - in: "path"
+          name: "status"
+          description: "Estado de los eventos"
+          required: true
+          type: "string"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Event"
+  /events/category/{category}:
+    get:
+      summary: "Buscar eventos por categoria"
+      description: "Obtiene eventos filtrados por su categoría"
+      produces:
+        - "application/json"
+      parameters:
+        - in: "path"
+          name: "category"
+          description: "Categoría de los eventos"
+          required: true
+          type: "string"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Event"
+  /events/{id}/classify:
+    put:
+      summary: "Clasificar evento automaticamente"
+      description: "Clasifica un evento de forma automática"
+      parameters:
+        - in: "path"
+          name: "id"
+          description: "ID del evento"
+          required: true
+          type: "string"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            $ref: "#/definitions/Event"
+        404:
+          description: "Not Found"
+  /events/{id}/manual-classify:
+    put:
+      summary: "Clasificar evento manualmente"
+      description: "Clasifica un evento de forma manual"
+      parameters:
+        - in: "path"
+          name: "id"
+          description: "ID del evento"
+          required: true
+          type: "string"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            $ref: "#/definitions/Event"
+        404:
+          description: "Not Found"
+  /events/needs:
+    get:
+      summary: "Obtener eventos que requiere gestion"
+      description: "Obtiene la lista de eventos que requieren gestión"
+      produces:
+        - "application/json"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Event"
+definitions:
+  Event:
+    type: "object"
+    properties:
+      id:
+        type: "string"
+      name:
+        type: "string"
+      type:
+        type: "string"
+      description:
+        type: "string"
+      date:
+        type: "string"
+        format: "date-time"
+      status:
+        type: "string"
+        enum:
+          - "Pendiente por revisar"
+          - "Revisado"
+      category:
+        type: "string"
+        enum:
+          - "Requiere gestión"
+          - "No requiere gestión"
+    required:
+      - "name"
+      - "type"
+      - "description"
+      - "date"

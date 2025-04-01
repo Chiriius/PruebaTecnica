@@ -1,0 +1,38 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: prueba_tecnica
+    ports:
+      - "8080:8080"
+    env_file:
+      - .env
+    restart: unless-stopped
+    networks:
+      - pruebatecnica 
+
+  mongodb:
+    image: mongo:noble
+    container_name: mongodb
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+      - ./data/mongo:/docker-entrypoint-initdb.d
+    environment:
+      - MONGO_INITDB_DATABASE=events_db
+    healthcheck:
+      test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
+      interval: 5s
+      timeout: 30s
+      retries: 3
+    networks:
+      - pruebatecnica  
+
+volumes:
+  mongo_data:
+
+networks:
+  pruebatecnica:
+    driver: bridge
